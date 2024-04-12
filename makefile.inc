@@ -211,7 +211,7 @@ INCFLAGS = \
 			-D$(SYSCLOCK)=$(F_CPU)
 
 CCFLAGS = \
-			-g -O2 -Wall -Werror -Wno-unused-local-typedefs -Wno-strict-aliasing \
+			-g -O2 -Wall -Werror -Wno-unused-local-typedefs -Wno-strict-aliasing -Wdouble-promotion\
 			-fasm \
 			-finline \
 			-finline-functions-called-once \
@@ -223,7 +223,7 @@ CCFLAGS = \
 			$(INCFLAGS) \
 			$(ARCHFLAGS)
 
-CPPFLAGS = -fno-exceptions -fno-rtti
+CPPFLAGS = -fno-exceptions -fno-rtti -std=c++11
 
 ASFLAGS = $(ARCHFLAGS)
 
@@ -328,7 +328,7 @@ RESOURCE_COMPILER = stmlib/tools/resources_compiler.py
 resources: $(TARGET)/resources.cc
 
 $(TARGET)/resources.cc: $(wildcard $(RESOURCES)/*.py)
-		python $(RESOURCE_COMPILER) $(RESOURCES)/resources.py
+		python2 $(RESOURCE_COMPILER) $(RESOURCES)/resources.py
 
 
 # ------------------------------------------------------------------------------
